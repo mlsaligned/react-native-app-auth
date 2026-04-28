@@ -95,8 +95,8 @@ RCT_REMAP_METHOD(authorize,
                  skipCodeExchange: (BOOL) skipCodeExchange
                  connectionTimeoutSeconds: (double) connectionTimeoutSeconds
                  additionalHeaders: (NSDictionary *_Nullable) additionalHeaders
-                 useNonce: (BOOL *) useNonce
-                 usePKCE: (BOOL *) usePKCE
+                 useNonce: (BOOL) useNonce
+                 usePKCE: (BOOL) usePKCE
                  resolve: (RCTPromiseResolveBlock) resolve
                  reject: (RCTPromiseRejectBlock)  reject)
 {
@@ -309,8 +309,8 @@ RCT_REMAP_METHOD(logout,
                           clientId: (NSString *) clientId
                       clientSecret: (NSString *) clientSecret
                             scopes: (NSArray *) scopes
-                          useNonce: (BOOL *) useNonce
-                           usePKCE: (BOOL *) usePKCE
+                          useNonce: (BOOL) useNonce
+                           usePKCE: (BOOL) usePKCE
               additionalParameters: (NSDictionary *_Nullable) additionalParameters
               skipCodeExchange: (BOOL) skipCodeExchange
                            resolve: (RCTPromiseResolveBlock) resolve
