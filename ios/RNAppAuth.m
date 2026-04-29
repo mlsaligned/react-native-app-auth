@@ -95,6 +95,14 @@ RCT_REMAP_METHOD(authorize,
                  skipCodeExchange: (BOOL) skipCodeExchange
                  connectionTimeoutSeconds: (double) connectionTimeoutSeconds
                  additionalHeaders: (NSDictionary *_Nullable) additionalHeaders
+                 // useNonce/usePKCE are declared as (BOOL), not (BOOL *).
+                 // React Native 0.77+ has a stricter Objective-C bridge that
+                 // rejects pointer-to-BOOL with the runtime error
+                 // "Objective C type BOOL is unsupported", which crashes
+                 // authorize() on iOS. The function body reads these as
+                 // plain bool values, so the pointer notation upstream was
+                 // always semantically wrong. See upstream report:
+                 // https://github.com/FormidableLabs/react-native-app-auth/issues/1076
                  useNonce: (BOOL) useNonce
                  usePKCE: (BOOL) usePKCE
                  resolve: (RCTPromiseResolveBlock) resolve
@@ -309,6 +317,9 @@ RCT_REMAP_METHOD(logout,
                           clientId: (NSString *) clientId
                       clientSecret: (NSString *) clientSecret
                             scopes: (NSArray *) scopes
+                          // (BOOL), not (BOOL *) — see comment on the
+                          // RCT_REMAP_METHOD(authorize, ...) signature above
+                          // for the React Native 0.77 bridge background.
                           useNonce: (BOOL) useNonce
                            usePKCE: (BOOL) usePKCE
               additionalParameters: (NSDictionary *_Nullable) additionalParameters

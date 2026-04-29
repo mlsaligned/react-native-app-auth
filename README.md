@@ -1,3 +1,25 @@
+<!--
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ mlsaligned fork notes                                               │
+  │                                                                     │
+  │ This is a fork of FormidableLabs/react-native-app-auth. The         │
+  │ `state_fix` branch is the long-lived branch our app pins to via    │
+  │ a commit SHA in package.json. We do not merge `state_fix` into     │
+  │ `main` — `main` tracks upstream so we can diff and pull fixes      │
+  │ later.                                                              │
+  │                                                                     │
+  │ What `state_fix` adds on top of upstream 6.4.3:                    │
+  │                                                                     │
+  │ 1. iOS: generate `state` if no state is passed (zubairzubair).     │
+  │ 2. iOS: declare `useNonce` / `usePKCE` as `BOOL` instead of        │
+  │    `BOOL *` in `ios/RNAppAuth.m`. Required for React Native 0.77+, │
+  │    whose stricter Objective-C bridge rejects pointer-to-BOOL with  │
+  │    the runtime error "Objective C type BOOL is unsupported" and   │
+  │    crashes `authorize()`. Mirrors upstream issue                    │
+  │    https://github.com/FormidableLabs/react-native-app-auth/issues/1076 │
+  └─────────────────────────────────────────────────────────────────────┘
+-->
+
 <p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/react-native-app-auth/main/docs/react-native-app-auth-logo.png" width=224></p>
 <h2 align="center">React Native App Auth</h2>
 <p align="center">
